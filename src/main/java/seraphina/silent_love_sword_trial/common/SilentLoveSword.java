@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.common;
+package seraphina.silent_love_sword_trial.common;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -13,9 +13,9 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-import seraphina.silent_love_sword_tria.util.EntityUtil;
-import seraphina.silent_love_sword_tria.util.ModUtil;
-import seraphina.silent_love_sword_tria.util.PlayerUtil;
+import seraphina.silent_love_sword_trial.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.ModUtil;
+import seraphina.silent_love_sword_trial.util.PlayerUtil;
 
 import java.util.List;
 

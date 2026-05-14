@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

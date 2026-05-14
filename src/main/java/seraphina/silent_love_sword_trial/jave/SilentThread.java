@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.jave;
+package seraphina.silent_love_sword_trial.jave;
 
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import net.minecraft.CrashReport;
@@ -6,12 +6,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.MinecraftForge;
-import seraphina.silent_love_sword_tria.badmc.*;
-import seraphina.silent_love_sword_tria.interfaces.ISilentThread;
-import seraphina.silent_love_sword_tria.util.FinalValue;
-import seraphina.silent_love_sword_tria.util.ModUtil;
-import seraphina.silent_love_sword_tria.util.PlayerDef;
-import seraphina.silent_love_sword_tria.util.PlayerUtil;
+import seraphina.silent_love_sword_trial.badmc.*;
+import seraphina.silent_love_sword_trial.interfaces.ISilentThread;
+import seraphina.silent_love_sword_trial.util.FinalValue;
+import seraphina.silent_love_sword_trial.util.ModUtil;
+import seraphina.silent_love_sword_trial.util.PlayerDef;
+import seraphina.silent_love_sword_trial.util.PlayerUtil;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;

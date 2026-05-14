@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;

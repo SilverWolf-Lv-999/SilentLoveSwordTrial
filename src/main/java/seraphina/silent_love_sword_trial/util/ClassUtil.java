@@ -1,6 +1,6 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
-import seraphina.silent_love_sword_tria.ModSource;
+import seraphina.silent_love_sword_trial.ModSource;
 
 import java.io.InputStream;
 import java.lang.invoke.MethodHandle;
@@ -22,7 +22,7 @@ public class ClassUtil {
 		String filePath = clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
 		if (!filePath.contains("/mods/") || !filePath.contains("\\mods\\")) return false;
 		if (filePath.contains("/libraries/") || filePath.contains("\\libraries\\")) return false;
-		return !clazz.getName().startsWith("seraphina.silent_love_sword.");
+		return !clazz.getName().startsWith("seraphina.silent_love_sword_trial.");
 	}
 
 	public enum ClassOption {

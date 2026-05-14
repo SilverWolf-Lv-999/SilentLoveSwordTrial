@@ -1,11 +1,11 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.phys.Vec3;
-import seraphina.silent_love_sword_tria.badmc.DeathBlockPos;
-import seraphina.silent_love_sword_tria.badmc.DeathChunkPos;
-import seraphina.silent_love_sword_tria.badmc.DeathVec3;
+import seraphina.silent_love_sword_trial.badmc.DeathBlockPos;
+import seraphina.silent_love_sword_trial.badmc.DeathChunkPos;
+import seraphina.silent_love_sword_trial.badmc.DeathVec3;
 
 public class FinalValue {
     public static final Vec3 DEATH_POS = new DeathVec3();

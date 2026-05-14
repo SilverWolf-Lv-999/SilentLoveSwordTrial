@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -6,8 +6,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.main.GameConfig;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
-import seraphina.silent_love_sword_tria.util.ClassUtil;
-import seraphina.silent_love_sword_tria.util.PlayerDef;
+import seraphina.silent_love_sword_trial.util.ClassUtil;
+import seraphina.silent_love_sword_trial.util.PlayerDef;
 
 public class SilentMinecraft extends Minecraft {
     public SilentMinecraft(GameConfig p_91084_) {

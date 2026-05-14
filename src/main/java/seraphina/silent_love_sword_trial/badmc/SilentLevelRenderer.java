@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.state.BlockState;
-import seraphina.silent_love_sword_tria.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.EntityUtil;
 
 public class SilentLevelRenderer extends LevelRenderer {
     public SilentLevelRenderer(Minecraft p_234245_, EntityRenderDispatcher p_234246_, BlockEntityRenderDispatcher p_234247_, RenderBuffers p_234248_) {

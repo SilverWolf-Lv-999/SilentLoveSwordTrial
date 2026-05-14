@@ -1,10 +1,10 @@
-package seraphina.silent_love_sword_tria;
+package seraphina.silent_love_sword_trial;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
-import seraphina.silent_love_sword_tria.jave.SilentThread;
-import seraphina.silent_love_sword_tria.util.ModUtil;
+import seraphina.silent_love_sword_trial.jave.SilentThread;
+import seraphina.silent_love_sword_trial.util.ModUtil;
 
 @Mod("silent_love_sword")
 public class ModSource {

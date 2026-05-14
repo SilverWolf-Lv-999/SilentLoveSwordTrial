@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -15,7 +15,7 @@ import net.minecraft.world.level.entity.EntitySection;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
-import seraphina.silent_love_sword_tria.interfaces.IEntityUtil;
+import seraphina.silent_love_sword_trial.interfaces.IEntityUtil;
 
 import java.util.EventObject;
 import java.util.HashSet;

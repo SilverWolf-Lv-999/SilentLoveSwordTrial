@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -10,7 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
-import seraphina.silent_love_sword_tria.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.EntityUtil;
 
 import java.util.function.Supplier;
 

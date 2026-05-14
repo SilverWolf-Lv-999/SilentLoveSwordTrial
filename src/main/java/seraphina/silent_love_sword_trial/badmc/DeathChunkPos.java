@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import net.minecraft.world.level.ChunkPos;
 

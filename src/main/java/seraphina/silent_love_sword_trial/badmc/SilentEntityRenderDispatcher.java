@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.world.entity.Entity;
-import seraphina.silent_love_sword_tria.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.EntityUtil;
 
 public class SilentEntityRenderDispatcher extends EntityRenderDispatcher {
     public SilentEntityRenderDispatcher(Minecraft p_234579_, TextureManager p_234580_, ItemRenderer p_234581_, BlockRenderDispatcher p_234582_, Font p_234583_, Options p_234584_, EntityModelSet p_234585_) {

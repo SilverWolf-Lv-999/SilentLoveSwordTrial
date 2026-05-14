@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.util;
+package seraphina.silent_love_sword_trial.util;
 
 import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
@@ -12,9 +12,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import seraphina.silent_love_sword_tria.badmc.SilentMinecraft;
-import seraphina.silent_love_sword_tria.common.SilentLoveSword;
-import seraphina.silent_love_sword_tria.interfaces.IModUtil;
+import seraphina.silent_love_sword_trial.badmc.SilentMinecraft;
+import seraphina.silent_love_sword_trial.common.SilentLoveSword;
+import seraphina.silent_love_sword_trial.interfaces.IModUtil;
 import sun.misc.Unsafe;
 
 import java.lang.invoke.MethodHandle;

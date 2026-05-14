@@ -1,10 +1,10 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import seraphina.silent_love_sword_tria.util.PlayerUtil;
+import seraphina.silent_love_sword_trial.util.PlayerUtil;
 
 public class SilentServerPlayer extends ServerPlayer {
     public SilentServerPlayer(MinecraftServer p_254143_, ServerLevel p_254435_, GameProfile p_253651_) {

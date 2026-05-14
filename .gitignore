@@ -27,3 +27,6 @@ replay_pid*
 .gradle
 run
 /build
+*.MF
+*.txt
+*.bin

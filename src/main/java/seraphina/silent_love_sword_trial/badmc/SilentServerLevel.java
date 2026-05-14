@@ -1,4 +1,4 @@
-package seraphina.silent_love_sword_tria.badmc;
+package seraphina.silent_love_sword_trial.badmc;
 
 import com.google.common.collect.Lists;
 import net.minecraft.resources.ResourceKey;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraft.world.level.storage.ServerLevelData;
 import org.jetbrains.annotations.Nullable;
-import seraphina.silent_love_sword_tria.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.EntityUtil;
 
 import java.util.List;
 import java.util.concurrent.Executor;
