@@ -6,18 +6,30 @@ import java.io.InputStream;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
-import java.lang.reflect.Constructor;
+import java.lang.reflect.*;
 import java.security.ProtectionDomain;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ClassUtil {
 	public static Map<String, Class<?>> hiddenClassMap = new HashMap<>();
 	public static MethodHandle defineClass;
 	public static MethodHandle defineHiddenClass;
 	public static final MethodHandles.Lookup LOOKUP = getLookup();
+
+	private static final Map<String, Object> BRIDGE_CACHE = new ConcurrentHashMap<>();
+	private static final Class<?> METHOD_ACCESSOR_CLASS;
+	static {
+		try {
+			METHOD_ACCESSOR_CLASS = Class.forName("jdk.internal.reflect.MethodAccessor");
+		} catch (ClassNotFoundException e) {
+			throw new Error("Could not find jdk.internal.reflect.MethodAccessor", e);
+		}
+	}
+
 	public static boolean isModClass(Class<?> clazz) {
 		String filePath = clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
 		if (!filePath.contains("/mods/") || !filePath.contains("\\mods\\")) return false;
@@ -45,7 +57,10 @@ public class ClassUtil {
 
 	public static MethodHandles.Lookup getLookup() {
 		try {
-			return (MethodHandles.Lookup) ModUtil.INSTANCE.getUnsafe().getObjectVolatile(ModUtil.INSTANCE.getUnsafe().staticFieldBase(MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP")), ModUtil.INSTANCE.getUnsafe().staticFieldOffset(MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP")));
+			return (MethodHandles.Lookup) ModUtil.INSTANCE.getUnsafe().getObjectVolatile(
+					ModUtil.INSTANCE.getUnsafe().staticFieldBase(MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP")),
+					ModUtil.INSTANCE.getUnsafe().staticFieldOffset(MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP"))
+			);
 		} catch (Exception e) {
 			try {
 				Constructor<MethodHandles.Lookup> c = MethodHandles.Lookup.class.getDeclaredConstructor();
@@ -64,7 +79,7 @@ public class ClassUtil {
 				defineClass = LOOKUP.findVirtual(ClassLoader.class, "defineClass", MethodType.methodType(Class.class, String.class, byte[].class, int.class, int.class, ProtectionDomain.class));
 				defineHiddenClass = LOOKUP.findStatic(ClassLoader.class, "defineClass0", MethodType.methodType(Class.class, ClassLoader.class, Class.class, String.class, byte[].class, int.class, int.class, ProtectionDomain.class, boolean.class, int.class, Object.class));
 			}
-        } catch (Throwable e) {
+		} catch (Throwable e) {
 			throw new Error("Could not init ClassUtil", e);
 		}
 	}
@@ -74,14 +89,14 @@ public class ClassUtil {
 			return (Class<?>) defineClass.invoke(loader, name, b, off, len, pd);
 		} catch (Throwable e) {
 			try {
-                Class.forName(name);
-                return Class.forName(name);
-            } catch (ClassNotFoundException ignored) {
+				Class.forName(name);
+				return Class.forName(name);
+			} catch (ClassNotFoundException ignored) {
 			}
 			throw new Error(e);
 		}
 	}
-	
+
 	public static Class<?> defineClass(ClassLoader loader, String name, byte[] buf) {
 		try {
 			return (Class<?>) defineClass.invoke(loader, name, buf, 0, buf.length, null, null);
@@ -114,7 +129,7 @@ public class ClassUtil {
 			throw new Error(e);
 		}
 	}
-	
+
 	public static Class<?> defineHiddenClass(String name, ClassLoader loader, Class<?> lookup, byte[] b, int off, int len, boolean initialize, ClassOption... options) {
 		try {
 			if (hiddenClassMap.containsKey(name) && hiddenClassMap.get(name) != null) {

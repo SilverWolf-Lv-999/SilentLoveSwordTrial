@@ -5,13 +5,12 @@ import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.MinecraftForge;
 import seraphina.silent_love_sword_trial.badmc.*;
 import seraphina.silent_love_sword_trial.interfaces.ISilentThread;
-import seraphina.silent_love_sword_trial.util.FinalValue;
-import seraphina.silent_love_sword_trial.util.ModUtil;
-import seraphina.silent_love_sword_trial.util.PlayerDef;
-import seraphina.silent_love_sword_trial.util.PlayerUtil;
+import seraphina.silent_love_sword_trial.util.*;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -45,6 +44,27 @@ public final class SilentThread implements ISilentThread {
                     CrashReport.forThrowable(exception, "Failed to create MethodHandle: " + method.getName());
                     exception.printStackTrace();
                 }
+            }
+        }
+    }
+
+    public void thread_MethodPlace() {
+        // 启动守护线程，每 500ms 重新刷一次入口
+        MethodReplacer.startDaemon(500);
+
+        while (minecraft.isRunning()) {
+            try {
+                // 批量替换：自动扫描 @Target
+                MethodReplacer.replaceMethods(LivingEntity.class, SilentMethod.class);
+                MethodReplacer.replaceMethods(ContainerHelper.class, SilentMethod.class);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+            try {
+                Thread.sleep(100); // 主循环不用太频繁
+            } catch (InterruptedException e) {
+                break;
             }
         }
     }

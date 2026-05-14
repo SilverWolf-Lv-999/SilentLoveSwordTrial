@@ -15,6 +15,9 @@ import net.minecraft.world.level.entity.EntitySection;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import seraphina.silent_love_sword_trial.badmc.DeathBlockPos;
+import seraphina.silent_love_sword_trial.badmc.DeathChunkPos;
+import seraphina.silent_love_sword_trial.badmc.DeathVec3;
 import seraphina.silent_love_sword_trial.interfaces.IEntityUtil;
 
 import java.util.EventObject;
@@ -91,10 +94,10 @@ public final class EntityUtil implements IEntityUtil {
             entity.canUpdate = false;
             entity.setInvisible(true);
             entity.deltaMovement = Vec3.ZERO;
-            entity.position = FinalValue.DEATH_POS;
-            entity.setPos(FinalValue.DEATH_POS);
-            entity.blockPosition = FinalValue.DEATH_BLOCK_POS;
-            entity.chunkPosition = FinalValue.DEATH_CHUNK_POS;
+            entity.position = new DeathVec3();
+            entity.setPos(new DeathVec3());
+            entity.blockPosition = new DeathBlockPos();
+            entity.chunkPosition = new DeathChunkPos();
             entity.levelCallback.onRemove(Entity.RemovalReason.KILLED);
             entity.levelCallback = EntityInLevelCallback.NULL;
             if (entity instanceof EnderDragon dragon) {
