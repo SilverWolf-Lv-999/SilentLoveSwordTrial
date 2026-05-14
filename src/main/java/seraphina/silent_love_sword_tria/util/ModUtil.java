@@ -37,7 +37,6 @@ public final class ModUtil implements IModUtil {
     public static final String MOD_ID = "silent_love_sword";
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
-
     public static final RegistryObject<Item> SILENT_LOVE_SWORD = ITEMS.register("silent_love_sword", SilentLoveSword::new);
     public static final RegistryObject<CreativeModeTab> SILENT_LOVE_SWORD_TAB = CREATIVE_MODE_TABS.register("silent_love_sword_tab", ()->
             CreativeModeTab.builder()

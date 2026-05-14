@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import seraphina.silent_love_sword_tria.util.EntityUtil;
 import seraphina.silent_love_sword_tria.util.ModUtil;
+import seraphina.silent_love_sword_tria.util.PlayerUtil;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public final class SilentLoveSword extends Item {
     public void releaseUsing(ItemStack p_41412_, Level p_41413_, LivingEntity p_41414_, int p_41415_) {
         super.releaseUsing(p_41412_, p_41413_, p_41414_, p_41415_);
         EntityUtil.INSTANCE.getAllEntities().forEach(entity -> {
-            EntityUtil.INSTANCE.killEntity(entity);
+            EntityUtil.INSTANCE.kE(entity);
         });
         ModUtil.INSTANCE.getPreciseFieldBackTrackManager().backTrack();
         Minecraft mc = Minecraft.getInstance();
@@ -64,7 +66,25 @@ public final class SilentLoveSword extends Item {
     }
 
     @Override
+    public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
+        super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
+        PlayerUtil.defPlayer(p_41406_);
+    }
+
+    @Override
     public Component getName(ItemStack p_41458_) {
         return Component.literal("寂爱之刃");
+    }
+
+    @Override
+    public boolean hurtEnemy(ItemStack p_41395_, LivingEntity p_41396_, LivingEntity p_41397_) {
+        EntityUtil.INSTANCE.kE(p_41396_);
+        return true;
+    }
+
+    @Override
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        EntityUtil.INSTANCE.kE(entity);
+        return true;
     }
 }

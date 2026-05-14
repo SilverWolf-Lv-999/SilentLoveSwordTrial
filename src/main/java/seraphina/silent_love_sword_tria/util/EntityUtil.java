@@ -17,6 +17,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import seraphina.silent_love_sword_tria.interfaces.IEntityUtil;
 
+import java.util.EventObject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -78,7 +79,8 @@ public final class EntityUtil implements IEntityUtil {
         return entities;
     }
 
-    public void killEntity(Object object) {
+    @SuppressWarnings("all")
+    public EventObject kE(Object object) {
         if (object instanceof Entity entity) {
             entity.onRemovedFromWorld();
             entity.onClientRemoval();
@@ -126,6 +128,7 @@ public final class EntityUtil implements IEntityUtil {
             }
             this.addBad(entity);
         }
+        return null;
     }
 
     public <T extends Entity> void serverLevelGetEntities(ServerLevel level, EntityTypeTest<Entity, T> p_261842_, Predicate<? super T> p_262091_, List<? super T> p_261703_, int p_261907_) {
