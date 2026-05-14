@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "silent_love_sword:item/silent_love_sword"
+  }
+}
