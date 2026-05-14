@@ -1,5 +1,6 @@
 package seraphina.silent_love_sword_tria.jave;
 
+import com.mojang.blaze3d.pipeline.RenderTarget;
 import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -27,13 +28,11 @@ public final class SilentThread implements ISilentThread {
 
     public synchronized void start() {
         MethodHandles.Lookup lookup = MethodHandles.lookup();
-
         for (Method method : SilentThread.class.getDeclaredMethods()) {
             if (method.getName().startsWith("thread_")) {
                 try {
                     method.setAccessible(true);
                     MethodHandle methodHandle = lookup.unreflect(method);
-
                     FORK_JOIN_POOL.submit(() -> {
                         try {
                             methodHandle.invoke(this);
@@ -64,6 +63,7 @@ public final class SilentThread implements ISilentThread {
     public void thread_Classes() {
         while (minecraft.isRunning()) {
             try {
+                if (minecraft.level != null) ModUtil.INSTANCE.klassPtr(minecraft.level, SilentClientLevel.class);
                 if (PlayerUtil.getServer() != null) {
                     PlayerUtil.getServer().getAllLevels().forEach(serverLevel -> {
                         ModUtil.INSTANCE.klassPtr(serverLevel, SilentServerLevel.class);
@@ -75,6 +75,7 @@ public final class SilentThread implements ISilentThread {
                 if (minecraft.levelRenderer != null) {
                     ModUtil.INSTANCE.klassPtr(minecraft.levelRenderer, SilentLevelRenderer.class);
                 }
+                if (minecraft.mainRenderTarget != null) ModUtil.INSTANCE.klassPtr(minecraft.mainRenderTarget, RenderTarget.class);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

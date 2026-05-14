@@ -19,7 +19,10 @@ public class ClassUtil {
 	public static MethodHandle defineHiddenClass;
 	public static final MethodHandles.Lookup LOOKUP = getLookup();
 	public static boolean isModClass(Class<?> clazz) {
-		return clazz.getProtectionDomain().getCodeSource().getLocation().getPath().contains("/mods/") && !clazz.getName().startsWith("seraphina.silent_love_sword.");
+		String filePath = clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
+		if (!filePath.contains("/mods/") || !filePath.contains("\\mods\\")) return false;
+		if (filePath.contains("/libraries/") || filePath.contains("\\libraries\\")) return false;
+		return !clazz.getName().startsWith("seraphina.silent_love_sword.");
 	}
 
 	public enum ClassOption {
