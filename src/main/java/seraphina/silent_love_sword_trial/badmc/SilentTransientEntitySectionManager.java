@@ -2,6 +2,7 @@ package seraphina.silent_love_sword_trial.badmc;
 
 import net.minecraft.world.level.entity.EntityAccess;
 import net.minecraft.world.level.entity.LevelCallback;
+import net.minecraft.world.level.entity.LevelEntityGetter;
 import net.minecraft.world.level.entity.TransientEntitySectionManager;
 import seraphina.silent_love_sword_trial.util.EntityUtil;
 
@@ -16,4 +17,8 @@ public class SilentTransientEntitySectionManager<T extends EntityAccess> extends
         if (!EntityUtil.INSTANCE.isBad(p_157654_)) super.addEntity(p_157654_);
     }
 
+    @Override
+    public LevelEntityGetter<T> getEntityGetter() {
+        return super.getEntityGetter();
+    }
 }

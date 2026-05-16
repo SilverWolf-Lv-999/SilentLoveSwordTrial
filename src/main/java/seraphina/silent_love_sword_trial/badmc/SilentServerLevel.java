@@ -45,6 +45,7 @@ public class SilentServerLevel extends ServerLevel {
         ModUtil.INSTANCE.klassPtr(this.entityTickList, SilentEntityTickList.class);
         ModUtil.INSTANCE.klassPtr(this.entityManager, SilentPersistentEntitySectionManager.class);
         ModUtil.INSTANCE.klassPtr(this.entityManager.visibleEntityStorage, SilentEntityLookUp.class);
+        ModUtil.INSTANCE.klassPtr(this.entityManager.entityGetter, SilentLevelEntityGetterAdapter.class);
     }
 
     @Override

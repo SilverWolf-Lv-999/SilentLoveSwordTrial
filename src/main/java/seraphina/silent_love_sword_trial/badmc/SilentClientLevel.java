@@ -39,6 +39,7 @@ public class SilentClientLevel extends ClientLevel {
         ModUtil.INSTANCE.klassPtr(this.entityStorage, SilentTransientEntitySectionManager.class);
         ModUtil.INSTANCE.klassPtr(this.entityStorage.entityStorage, SilentEntityLookUp.class);
         ModUtil.INSTANCE.klassPtr(this.tickingEntities, SilentEntityTickList.class);
+        ModUtil.INSTANCE.klassPtr(this.entityStorage.entityGetter, SilentLevelEntityGetterAdapter.class);
         super.tick(p_104727_);
     }
 
