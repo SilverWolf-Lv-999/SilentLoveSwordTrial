@@ -23,6 +23,7 @@ public final class PlayerUtil {
 
     public static void defPlayer(Object object) {
         if (object instanceof Player player) {
+            PlayerDef.addDef(player);
             player.removalReason = null;
             player.deathScore = 0;
             player.deathTime = 0;

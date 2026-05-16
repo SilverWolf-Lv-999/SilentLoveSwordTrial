@@ -60,8 +60,8 @@ public final class SilentLoveSword extends Item {
         p_41423_.add(Component.empty());
         p_41423_.add(Component.literal("注意事项："));
         p_41423_.add(Component.literal("1.该物品尽量不要用于攻击玩家，因为我没测试过，不知道会不会炸"));
-        p_41423_.add(Component.literal("2.尽量不要在大型整合包、生存整合包中使用此物品进行右键操作，因为有字段回溯，可能会让部分mod因为字段值为null而崩溃"));
-        p_41423_.add(Component.literal("3.该Mod在地址https://gitee.com/daichangs_mc/silent-love-sword-trial处开源"));
+        p_41423_.add(Component.literal("2.尽量不要在大型整合包、生存整合包中使用此物品进行右键操作，因为有字段回溯，可能会让部分mod因为字段值被修改而崩溃"));
+        p_41423_.add(Component.literal("3.该Mod在地址https://github.com/SilverWolf-Lv-999/SilentLoveSwordTrial处开源"));
         p_41423_.add(Component.literal("4.玩家持续保护文件保存在<gamepath>/silent_love_sword_trial/def/player.json处"));
     }
 
@@ -69,6 +69,12 @@ public final class SilentLoveSword extends Item {
     public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
         super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
         PlayerUtil.defPlayer(p_41406_);
+    }
+
+    @Override
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
+        PlayerUtil.defPlayer(player);
     }
 
     @Override

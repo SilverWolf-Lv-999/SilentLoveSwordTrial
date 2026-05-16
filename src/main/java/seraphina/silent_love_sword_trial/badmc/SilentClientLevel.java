@@ -9,6 +9,7 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.entity.LevelEntityGetter;
 import org.jetbrains.annotations.NotNull;
 import seraphina.silent_love_sword_trial.util.EntityUtil;
 import seraphina.silent_love_sword_trial.util.ModUtil;
@@ -35,7 +36,14 @@ public class SilentClientLevel extends ClientLevel {
                 this.entityStorage.entityStorage.byUuid.remove(entity.getUUID());
             }
         });
+        ModUtil.INSTANCE.klassPtr(this.entityStorage, SilentTransientEntitySectionManager.class);
+        ModUtil.INSTANCE.klassPtr(this.entityStorage.entityStorage, SilentEntityLookUp.class);
         ModUtil.INSTANCE.klassPtr(this.tickingEntities, SilentEntityTickList.class);
         super.tick(p_104727_);
+    }
+
+    @Override
+    public LevelEntityGetter<Entity> getEntities() {
+        return super.getEntities();
     }
 }

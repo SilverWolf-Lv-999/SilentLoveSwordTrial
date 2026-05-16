@@ -22,7 +22,7 @@ public class PreciseFieldBackTrackManager {
     private final Set<String> scannedModIds = ConcurrentHashMap.newKeySet();
 
     private static final String[] BLACKLIST_PREFIXES = {
-            "seraphina.silent_love_sword."
+            "seraphina.silent_love_sword_trail."
     };
 
     public PreciseFieldBackTrackManager() {

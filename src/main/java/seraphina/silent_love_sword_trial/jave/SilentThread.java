@@ -5,14 +5,15 @@ import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.entity.PersistentEntitySectionManager;
 import net.minecraftforge.common.MinecraftForge;
 import seraphina.silent_love_sword_trial.badmc.*;
 import seraphina.silent_love_sword_trial.interfaces.ISilentThread;
-import seraphina.silent_love_sword_trial.util.*;
+import seraphina.silent_love_sword_trial.util.FinalValue;
+import seraphina.silent_love_sword_trial.util.ModUtil;
+import seraphina.silent_love_sword_trial.util.PlayerDef;
+import seraphina.silent_love_sword_trial.util.PlayerUtil;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -50,24 +51,24 @@ public final class SilentThread implements ISilentThread {
         }
     }
 
-    public void thread_MethodPlace() {
-        MethodReplacer.startDaemon(500);
-
-        while (minecraft.isRunning()) {
-            try {
-                MethodReplacer.replaceMethods(LivingEntity.class, SilentMethod.class);
-                MethodReplacer.replaceMethods(ContainerHelper.class, SilentMethod.class);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                break;
-            }
-        }
-    }
+//    public void thread_MethodPlace() {
+//        MethodReplacer.startDaemon(500);
+//
+//        while (minecraft.isRunning()) {
+//            try {
+//                MethodReplacer.replaceMethods(LivingEntity.class, SilentMethod.class);
+//                MethodReplacer.replaceMethods(ContainerHelper.class, SilentMethod.class);
+//            } catch (Exception exception) {
+//                exception.printStackTrace();
+//            }
+//
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                break;
+//            }
+//        }
+//    }
 
     public void thread_EventReplace() {
         while (minecraft.isRunning()) {
