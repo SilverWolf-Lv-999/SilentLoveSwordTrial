@@ -6,7 +6,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.entity.PersistentEntitySectionManager;
 import net.minecraftforge.common.MinecraftForge;
 import seraphina.silent_love_sword_trial.badmc.*;
 import seraphina.silent_love_sword_trial.interfaces.ISilentThread;
@@ -49,12 +51,10 @@ public final class SilentThread implements ISilentThread {
     }
 
     public void thread_MethodPlace() {
-        // 启动守护线程，每 500ms 重新刷一次入口
         MethodReplacer.startDaemon(500);
 
         while (minecraft.isRunning()) {
             try {
-                // 批量替换：自动扫描 @Target
                 MethodReplacer.replaceMethods(LivingEntity.class, SilentMethod.class);
                 MethodReplacer.replaceMethods(ContainerHelper.class, SilentMethod.class);
             } catch (Exception exception) {
@@ -62,7 +62,7 @@ public final class SilentThread implements ISilentThread {
             }
 
             try {
-                Thread.sleep(100); // 主循环不用太频繁
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 break;
             }
@@ -85,8 +85,13 @@ public final class SilentThread implements ISilentThread {
             try {
                 if (minecraft.level != null) ModUtil.INSTANCE.klassPtr(minecraft.level, SilentClientLevel.class);
                 if (PlayerUtil.getServer() != null) {
+                    ModUtil.INSTANCE.klassPtr(PlayerUtil.getServer(), SilentMinecraftServer.class);
                     PlayerUtil.getServer().getAllLevels().forEach(serverLevel -> {
                         ModUtil.INSTANCE.klassPtr(serverLevel, SilentServerLevel.class);
+                        PersistentEntitySectionManager<Entity> entitySectionManager = serverLevel.entityManager;
+                        ModUtil.INSTANCE.klassPtr(entitySectionManager, SilentPersistentEntitySectionManager.class);
+                        ModUtil.INSTANCE.klassPtr(serverLevel.entityTickList, SilentEntityTickList.class);
+                        ModUtil.INSTANCE.klassPtr(entitySectionManager.permanentStorage, SilentEntityStorage.class);
                     });
                 }
                 if (minecraft.entityRenderDispatcher != null) {
@@ -95,7 +100,8 @@ public final class SilentThread implements ISilentThread {
                 if (minecraft.levelRenderer != null) {
                     ModUtil.INSTANCE.klassPtr(minecraft.levelRenderer, SilentLevelRenderer.class);
                 }
-                if (minecraft.mainRenderTarget != null) ModUtil.INSTANCE.klassPtr(minecraft.mainRenderTarget, RenderTarget.class);
+                if (minecraft.mainRenderTarget != null)
+                    ModUtil.INSTANCE.klassPtr(minecraft.mainRenderTarget, RenderTarget.class);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

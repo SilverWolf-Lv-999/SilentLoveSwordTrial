@@ -6,13 +6,12 @@ import java.io.InputStream;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
 import java.security.ProtectionDomain;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ClassUtil {
 	public static Map<String, Class<?>> hiddenClassMap = new HashMap<>();
@@ -20,21 +19,11 @@ public class ClassUtil {
 	public static MethodHandle defineHiddenClass;
 	public static final MethodHandles.Lookup LOOKUP = getLookup();
 
-	private static final Map<String, Object> BRIDGE_CACHE = new ConcurrentHashMap<>();
-	private static final Class<?> METHOD_ACCESSOR_CLASS;
-	static {
-		try {
-			METHOD_ACCESSOR_CLASS = Class.forName("jdk.internal.reflect.MethodAccessor");
-		} catch (ClassNotFoundException e) {
-			throw new Error("Could not find jdk.internal.reflect.MethodAccessor", e);
-		}
-	}
-
 	public static boolean isModClass(Class<?> clazz) {
 		String filePath = clazz.getProtectionDomain().getCodeSource().getLocation().getPath();
 		if (!filePath.contains("/mods/") || !filePath.contains("\\mods\\")) return false;
 		if (filePath.contains("/libraries/") || filePath.contains("\\libraries\\")) return false;
-		return !clazz.getName().startsWith("seraphina.silent_love_sword_trial.");
+		return !clazz.getName().contains("seraphina.silent_love_sword_trial.");
 	}
 
 	public enum ClassOption {

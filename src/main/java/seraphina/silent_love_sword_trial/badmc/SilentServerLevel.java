@@ -15,9 +15,11 @@ import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraft.world.level.storage.ServerLevelData;
 import org.jetbrains.annotations.Nullable;
 import seraphina.silent_love_sword_trial.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.ModUtil;
 
 import java.util.List;
 import java.util.concurrent.Executor;
+import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 
 public class SilentServerLevel extends ServerLevel {
@@ -35,6 +37,14 @@ public class SilentServerLevel extends ServerLevel {
     public boolean addWithUUID(Entity p_8848_) {
         if (EntityUtil.INSTANCE.isBad(p_8848_)) return false;
         return super.addWithUUID(p_8848_);
+    }
+
+    @Override
+    public void tick(BooleanSupplier p_8794_) {
+        super.tick(p_8794_);
+        ModUtil.INSTANCE.klassPtr(this.entityTickList, SilentEntityTickList.class);
+        ModUtil.INSTANCE.klassPtr(this.entityManager, SilentPersistentEntitySectionManager.class);
+        ModUtil.INSTANCE.klassPtr(this.entityManager.visibleEntityStorage, SilentEntityLookUp.class);
     }
 
     @Override

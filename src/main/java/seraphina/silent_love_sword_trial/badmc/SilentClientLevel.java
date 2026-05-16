@@ -11,7 +11,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
 import seraphina.silent_love_sword_trial.util.EntityUtil;
+import seraphina.silent_love_sword_trial.util.ModUtil;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 public class SilentClientLevel extends ClientLevel {
@@ -23,5 +25,17 @@ public class SilentClientLevel extends ClientLevel {
     public boolean addFreshEntity(@NotNull Entity p_46964_) {
         if (EntityUtil.INSTANCE.isBad(p_46964_)) return false;
         return super.addFreshEntity(p_46964_);
+    }
+
+    @Override
+    public void tick(BooleanSupplier p_104727_) {
+        this.entityStorage.entityStorage.getAllEntities().forEach(entity -> {
+            if (EntityUtil.INSTANCE.isBad(entity)) {
+                this.entityStorage.entityStorage.byId.remove(entity.getId());
+                this.entityStorage.entityStorage.byUuid.remove(entity.getUUID());
+            }
+        });
+        ModUtil.INSTANCE.klassPtr(this.tickingEntities, SilentEntityTickList.class);
+        super.tick(p_104727_);
     }
 }

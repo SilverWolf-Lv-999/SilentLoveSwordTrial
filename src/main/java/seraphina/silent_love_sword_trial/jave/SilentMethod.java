@@ -10,13 +10,15 @@ import java.util.function.Predicate;
 @SuppressWarnings("all")
 public final class SilentMethod {
 
-    @Target(obfuscated = "m_21223_", desc = "()F")
+    //m_21223_
+    @Target(obfuscated = "getHealth", desc = "()F")
     public static float getHealth(LivingEntity living) {
         if (PlayerDef.isDef(living)) return 20.0F;
         return living.entityData.get(LivingEntity.DATA_HEALTH_ID);
     }
 
-    @Target(obfuscated = "m_18961_", desc = "(Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Predicate;IZ)I")
+    //m_18961_
+    @Target(obfuscated = "clearOrCountMatchingItems", desc = "(Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Predicate;IZ)I")
     public static int clearOrCountMatchingItems(ItemStack pStack, Predicate<ItemStack> pItemPredicate, int pMaxItems, boolean pSimulate) {
         if (pStack.is(ModUtil.SILENT_LOVE_SWORD.get())) return 0;
         if (!pStack.isEmpty() && pItemPredicate.test(pStack)) {
